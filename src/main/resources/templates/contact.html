@@ -1,0 +1,51 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<th:block th:replace="fragments/head :: head"></th:block>
+<th:block th:replace="fragments/navbar :: navbar"></th:block>
+
+<main class="container py-5">
+  <h1 class="mb-4">Contact Us</h1>
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <form th:action="@{/contact}" th:object="${contactForm}" method="post" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input class="form-control" th:field="*{name}">
+          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" th:field="*{email}" type="email">
+          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input class="form-control" th:field="*{phone}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Subject</label>
+          <input class="form-control" th:field="*{subject}">
+          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" th:field="*{message}" rows="5"></textarea>
+          <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+        </div>
+        <button class="btn btn-primary">Send message</button>
+        <div class="alert alert-success mt-3" th:if="${success}">Thank you! We’ll be in touch shortly.</div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <div class="p-4 bg-light rounded-4">
+        <h5>Our Office</h5>
+        <p>123 Portage Ave E, Winnipeg, MB</p>
+        <p><strong>Hours:</strong> Mon–Fri 9:00–5:00</p>
+        <p><strong>Phone:</strong> (204) 555‑0123</p>
+        <p><strong>Email:</strong> info@prairiecpas.example</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<th:block th:replace="fragments/footer :: footer"></th:block>
